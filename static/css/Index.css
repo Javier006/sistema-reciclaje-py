@@ -1,0 +1,128 @@
+.navbar-toggler{
+    color: black;
+    border-radius: 20%;
+    border-color: black;
+}
+.navbar-toggler:hover{
+    background-color: #0493386e;
+}
+.navbar-toggler-icon{
+    color: solid black;
+    justify-content: right;
+}
+.offcanvas-header{
+    background-color: #44e95575;
+    color: black;
+    
+}
+.offcanvas-body{
+    background-color: #1dacaa75;
+    color: black
+}
+#nvara{
+    margin-top: -0.5em;
+    margin-bottom: -0.5em;
+    padding: 10px;
+    background: rgba(3, 118, 28, 0.694);
+    color: solid black;
+    position: relative;
+   
+}
+#inicio{
+    margin-left: 10px;
+    display: flex;
+    font-style: italic;
+    font-weight: bold;
+    font-size: 2em;
+    font-family:cursive;
+}
+
+#fondo{
+    margin-right: 4em;
+    margin-top: 7em;
+    background: rgba(30, 148, 70, 0.322);
+    user-select: none;
+}
+#fondo td .p{
+    color:black;
+    font-weight: 500;
+}
+#fondo #foto .p{
+    text-align: left;
+}
+
+#fondos{
+    margin-right: 4em;
+    margin-top: 7em;
+    background: rgba(30, 148, 70, 0.322);
+    user-select: none;
+}
+.margen{
+
+    margin-top: 1em;
+    padding: 2em;
+    align-items: center;
+    justify-items:flex-start;
+    background-color: antiquewhite;
+
+}
+.margennes{
+    margin-top: 4em;
+    padding: 2em;
+    align-items: center;
+    justify-items:flex-start;
+    background-color: antiquewhite;
+}
+
+.btns{
+    background-color: #04fc57a2;
+    outline: none;
+    border: none;
+    color: black;
+    padding: 8px 22px;
+    border-radius: 20px;
+    font-size: 14px;
+    transition: all 0.3 ease;
+    cursor: pointer;
+    user-select: none
+}
+.btns:hover{
+    background: #04f1ca;
+}
+.button{
+    margin-top: 1em;
+    outline: none;
+    border: none;
+    color: black;
+    padding: 8px 22px;
+    border-radius: 20px;
+    font-size: 14px;
+    transition: all 0.3 ease;
+    cursor: pointer;
+}
+.btnsS{
+    background-color: #fc0404a2;
+    outline: none;
+    border: none;
+    color: black;
+    padding: 8px 22px;
+    border-radius: 20px;
+    font-size: 14px;
+    transition: all 0.3 ease;
+    cursor: pointer;
+    user-select: none
+}
+.btnsS:hover{
+    background: #ffaf02;
+}
+.buttonS{
+    margin-top: 1em;
+    outline: none;
+    border: none;
+    color: black;
+    padding: 8px 22px;
+    border-radius: 20px;
+    font-size: 14px;
+    transition: all 0.3 ease;
+    cursor: pointer;
+}

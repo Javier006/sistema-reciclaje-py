@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css">
+    <title>Administrador</title>
+</head>
+<body>
+
+    <nav class="navbar navbar-light navbar-expand-lg fixed-top" style="background-color: #0dff00;">
+        <div class="container-fluid" style="width: 100%;">
+            <a class="navbar-brand" href="../">Administrador</a>
+        </div>
+    </nav>
+    <br><br><br>
+    <div class="container">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>USUARIO</th>
+                        <th>FOTO</th>
+                        <th>ESTADO</th>
+                        <th>CAMBIO ESTADO</th>
+                        <th>ELIMINAR</th>
+                    </tr>
+                </thead>
+                {% for m in materiales %}
+                <tbody>
+                    <tr>
+                        <td>{{m.cod_material}}</td>
+                        <td>{{m.cod_usuario_id}}</td>
+                        <td style="text-align: center;"><img src="/{{ m.foto }}" class="img-thumbnail  img-fluid rounded" width="100px" height="100px"></td>
+                        <!--td>{{m.estado}}</td-->
+                        <td>  
+                            {% if m.estado %}        
+                                Verificado
+                                <div class="col">
+                                   <img src="../../static/iconos/comprobado.png" width="30">
+                                </div>
+                            {% else %}
+                                Sin verificar
+                                <div class="col">
+                                    <img src="../../static/iconos/cancelar.png" width="30">
+                                </div>
+                            {% endif %}    
+                         </td>
+                        <td>
+                            <form method="POST" action="{% url 'administrador' %}">
+                                {% csrf_token %}
+                                <input type="hidden" name="material_id" value="{{ m.cod_material }}">
+                                <button type="submit" class="btn btn-primary">Cambiar</button>
+                            </form>
+                        </td>
+                        <td>
+                            <a href="../eliminar/{{ m.cod_material }}" type="button" class="btn btn-danger btn-sm{% if material.estado %} disabled{% endif %}">Borrar</a>
+                        </td>
+                    </tr>    
+                </tbody>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+    <!-- JavaScript para habilitar el comportamiento del botón de navegación en dispositivos móviles -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

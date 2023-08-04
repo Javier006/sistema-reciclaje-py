@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulario de Registro</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.1/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Formulario de Registro</h1>
+    <form id="registroForm" method="POST" onsubmit="return validarFormulario()">
+      {% csrf_token %}
+       <div class="mb-2">
+        <label for="username" class="form-label">Nombre de Usuario</label>
+        <input type="text" class="form-control" id="username" name="username" placeholder="Ingresa tu usuario" required>
+      </div>
+      <div class="mb-2">
+        <label for="nombre" class="form-label">Nombre</label>
+        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingresa tu nombre" required>
+      </div>
+      <div class="mb-2">
+        <label for="apellido" class="form-label">Apellido</label>
+        <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Ingresa tu apellido" required>
+      </div>
+      <div class="mb-2">
+        <label for="correo" class="form-label">Correo electrónico</label>
+        <input type="email" class="form-control" id="correo" name="correo" placeholder="Ingresa tu correo electrónico" required>
+      </div>
+      <div class="mb-2">
+        <label for="password" class="form-label">Contraseña</label>
+        <input type="password" class="form-control" id="password" name="password" placeholder="Ingresa tu contraseña" required>
+      </div>
+      <div class="mb-2">
+        <label for="confirm-password" class="form-label">Confirmar Contraseña</label>
+        <input type="password" class="form-control" id="confirm-password" name="confirm-password" placeholder="Confirma tu contraseña" required>
+      </div>
+      <div id="error-message" class="text-danger"></div>
+      <div class="text-center">
+        <button type="submit" class="btn btn-primary">Registrarse</button>
+      </div>
+    </form>
+    <br>
+    <div class="text-center">
+      <a href="../Login/"><button class="btn btn-primary">Volver</button></a>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.1/js/bootstrap.bundle.min.js"></script>
+  <script>
+    function validarFormulario() {
+      var contrasena = document.getElementById("password").value;
+      var confirmarContrasena = document.getElementById("confirm-password").value;
+
+      if (contrasena !== confirmarContrasena) {
+        var errorMessage = document.getElementById("error-message");
+        errorMessage.textContent = "Las contraseñas no coinciden";
+        return false; // Evita el envío del formulario
+      }
+
+      return true; // Permite el envío del formulario
+    }
+    
+    function mostrarExito() {
+      alert("¡Registro exitoso!");
+    }
+
+    // Agregar un evento de escucha al formulario para llamar a la función de éxito después del envío
+    document.getElementById("registroForm").addEventListener("submit", mostrarExito);
+  </script>
+  </script>
+</body>
+</html>

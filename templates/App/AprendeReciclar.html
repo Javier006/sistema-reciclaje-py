@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reciclin</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/Index.css">
+    <title>Materiales</title>
+    <style>
+      body{
+            background: #00eeff;
+        }
+      #estiloText {
+        position: relative;
+      }
+      #estiloText::before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(to right, #b47dcd, #e878a2, #eb85ab);
+        z-index: 1;
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: all 0.5s;
+      }
+      #estiloText:hover::before {
+        transform: scaleX(1);
+      }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-light navbar-expand-lg fixed-top" style="background-color: #0dff00;">
+        <div class="container-fluid" style="width: 100%;">
+            <a class="navbar-brand">Reciclin</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                      <a class="nav-link" href="../Materiales/?pk={{usuario.cod_usuario}}" style="display: inline-block;" id="estiloText">Mis Materiales</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../Mi-Cuenta/?pk={{usuario.cod_usuario}}" style="display: inline-block;" id="estiloText">Mi Cuenta</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../AprendeReciclar/?pk={{usuario.cod_usuario}}" style="display: inline-block;" id="estiloText">Aprende a reciclar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../Nosotros/?pk={{usuario.cod_usuario}}" style="display: inline-block;" id="estiloText">Quiénes Somos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../Contacto/?pk={{usuario.cod_usuario}}" style="display: inline-block;" id="estiloText">Contacto</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../Login/" style="display: inline-block;" id="estiloText">Cerrar Sesion</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row"  style="margin-top: 4.5em;">
+          <div class="col-sm col-lg-4" style="margin-bottom: 1em;">
+              <a style="text-decoration: none;">
+                  <div class="card mb-4 h-100" style="border: 1px solid black;">
+                      <div class="card-body text-center" style="background-color: #0dff00c9;">
+                          <h5 class="card-title" style="color: black;">SALDO: $ {{cuenta.saldo}} </h5>
+                      </div>
+                  </div>
+              </a>
+          </div>
+          <div class="col-sm col-lg-4" style="margin-bottom: 1em;">
+              <a href="../Sucursales/?pk={{usuario.cod_usuario}}" style="text-decoration: none;">
+                  <div class="card mb-4 h-100" style="border: 1px solid black;">
+                      <div class="card-body" style="background-color: #0dff00c9;">
+                          <h5 class="card-title text-center" style="color: black;">SUCURSALES</h5>
+                      </div>
+                  </div>
+              </a>
+          </div>
+          <div class="col-sm col-lg-4" style="margin-bottom: 1em;">
+              <a href="../Recompensas/?pk={{usuario.cod_usuario}}" style="text-decoration: none;">
+                  <div class="card mb-4 h-100" style="border: 1px solid black;">
+                      <div class="card-body" style="background-color: #0dff00c9;">
+                          <h5 class="card-title text-center" style="color: black;">DONACIONES O RECOMPENSAS</h5>
+                      </div>
+                  </div>
+              </a>
+          </div>
+      </div>
+</div>
+<br>
+<div class="text-center">
+    <h2>Video de como reciclar</h2>
+</div>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            {% for video in videos_papel %}
+                <div class="text-center">
+                    <h3>{{ video.snippet.title }}</h3>
+                    <iframe width="100%" height="315" src="https://www.youtube.com/embed/{{ video.id.videoId }}" frameborder="0" allowfullscreen></iframe>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<br>
+<div class="text-center">
+    <h1>Noticias de Reciclaje</h1>
+</div>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            {% for article in articles %}
+                <div class="article-title">
+                    <h2>{{ article.title }}</h2>
+                </div>
+                {% if article.urlToImage %}
+                <div class="article-image text-center">
+                    <img src="{{ article.urlToImage }}" alt="Imagen de la noticia" class="img-fluid">
+                </div>
+                {% endif %}
+                <div class="article-description">
+                    <p>{{ article.description }}</p>
+                </div>
+                <div class="article-source">
+                    <p>Fuente: {{ article.source.name }}</p>
+                </div>
+                <a href="{{ article.url }}" target="_blank">Leer más</a>
+                <hr>
+            {% endfor %}
+        </div>   
+    </div>       
+</div>
+<footer class="fixed-bottom"  style="background-color: #0dff00; padding: 20px; color: white;">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+        </div>
+      </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
